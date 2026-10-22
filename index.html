@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CódigoIAgil: desenvolvimento ágil com Inteligência Artificial. Do pensamento ao código."
+    />
+    <meta name="theme-color" content="#1e1e1e" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32.png"
+    />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -10,7 +22,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <title>Sujeito Programador - Meu portfólio</title>
+    <title>CódigoIAgil - Meu portfólio</title>
   </head>
   <body>
     <!-- inicio header -->
@@ -29,8 +41,15 @@
       <!-- inicio main -->
       <section class="main" id="home">
         <div>
+          <p class="eyebrow">
+            <span class="pulso" aria-hidden="true"></span>
+            CódigoIAgil · desenvolvimento ágil com IA
+          </p>
           <h1>Olá,<br />Seja bem-vindo</h1>
-          <p>Crie soluções para o seu negócio!</p>
+          <p class="subtitulo">
+            Crie soluções para o seu negócio: código pensado, conectado e
+            entregue por Inteligência Artificial.
+          </p>
           <a href="#projetos" class="call-to-action">Veja meus projetos 👇</a>
         </div>
       </section>
@@ -38,12 +57,13 @@
 
       <!-- inicio sobre -->
       <section class="about" id="sobre">
-        <div>
-          <h2>Sobre</h2>
+        <div class="painel">
+          <h2 class="titulo">Sobre</h2>
           <p>
-            Sou desenvolvedor front-end em formação e transformo ideias em
-            páginas rápidas, acessíveis e fáceis de usar. Gosto de entender o
-            problema do cliente antes de escrever a primeira linha de código.
+            Sou desenvolvedor front-end em formação e uso a Inteligência
+            Artificial como parceira de trabalho: ela conecta ideias,
+            referências e padrões para que o código saia mais rápido, sem abrir
+            mão da qualidade.
             <br /><br />
             Neste portfólio você encontra os projetos que construí durante os
             meus estudos, com HTML, CSS e, em breve, JavaScript.
@@ -58,9 +78,44 @@
       </section>
       <!-- fim sobre -->
 
+      <!-- inicio fluxo -->
+      <section class="fluxo" id="como-trabalho">
+        <h2 class="titulo">Do pensamento ao código</h2>
+        <p class="fluxo-intro">
+          A ideia por trás da marca CódigoIAgil, em três passos.
+        </p>
+        <ol class="fluxo-lista">
+          <li class="painel">
+            <span class="icone icone-cerebro" aria-hidden="true"></span>
+            <h3>Pensar</h3>
+            <p>
+              O cérebro entende o problema e desenha a solução antes da primeira
+              linha de código.
+            </p>
+          </li>
+          <li class="painel">
+            <span class="icone icone-neuronios" aria-hidden="true"></span>
+            <h3>Conectar</h3>
+            <p>
+              A IA liga os neurônios: ideias, referências e padrões se conectam
+              e aceleram cada decisão.
+            </p>
+          </li>
+          <li class="painel">
+            <span class="icone icone-codigo" aria-hidden="true"></span>
+            <h3>Codar</h3>
+            <p>
+              O código pensado chega pronto para revisar, testar e publicar com
+              segurança.
+            </p>
+          </li>
+        </ol>
+      </section>
+      <!-- fim fluxo -->
+
       <!-- inicio projetos -->
       <section class="projects" id="projetos">
-        <h2>Meus projetos</h2>
+        <h2 class="titulo">Meus projetos</h2>
         <p>Conheça meus últimos projetos</p>
 
         <div class="project-list">
@@ -111,8 +166,8 @@
 
     <!-- inicio rodape -->
     <footer>
-      <h3><a href="#home">Sujeito Programador</a></h3>
-      <p>Todos direitos reservados</p>
+      <h3><a href="#home">CódigoIAgil</a></h3>
+      <p>Desenvolvimento ágil com IA · Todos direitos reservados</p>
     </footer>
     <!-- fim rodape -->
   </body>
