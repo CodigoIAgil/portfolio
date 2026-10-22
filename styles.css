@@ -4,9 +4,11 @@
   --laranja: #f97316; /* losango e neurônios */
   --cinza: #c4c4c4; /* letras do nome */
   --texto: #ececec;
-  --painel: rgb(30 30 30 / 82%);
+  --verde: #5f7a2e; /* verde militar: botões de ação */
+  --verde-hover: #71903a;
+  --painel: rgb(30 30 30 / 85%);
   --linha: rgb(249 115 22 / 30%);
-  --marca-dagua-opacidade: 0.35; /* 0 = some, 1 = logo exatamente como é */
+  --marca-dagua-opacidade: 0.15; /* 0 = some, 1 = logo exatamente como é */
 }
 
 /* reset */
@@ -107,6 +109,26 @@ main > section + section::before {
   box-shadow: 0 0 12px var(--laranja);
 }
 
+/* botões de ação: verde militar, que contrasta com o laranja e chama o clique */
+.call-to-action,
+.action {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--verde);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 18px rgb(95 122 46 / 35%);
+}
+
+.call-to-action:hover,
+.action:hover {
+  background-color: var(--verde-hover);
+  box-shadow: 0 6px 26px rgb(113 144 58 / 55%);
+}
+
 /* inicio header */
 .nav {
   background-color: rgb(24 24 24 / 92%);
@@ -147,15 +169,59 @@ main > section + section::before {
 
 /* inicio main */
 .main {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: calc(100vh - 80px); /* tela inteira menos o menu */
   display: flex;
   align-items: center; /* centro vertical */
   padding-left: 10%;
   padding-right: 10%;
+
+  /* no topo a nuvem é a protagonista: a marca d'água quase some aqui */
+  background-color: rgb(30 30 30 / 75%);
 }
 
-.main div {
+.hero-nuvem {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* o nome que aparece no fundo da nuvem ao passar o mouse */
+.hero-nome {
+  position: absolute;
+  z-index: 0;
+  left: 70%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  font-size: clamp(40px, 7vw, 112px);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--cinza);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  transition:
+    opacity 1.2s,
+    filter 1.2s,
+    transform 1.2s;
+}
+
+.hero-nome span {
+  color: var(--laranja);
+}
+
+.revela-nome .hero-nome {
+  opacity: 0.9;
+  filter: blur(0);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-conteudo {
+  position: relative;
+  z-index: 2;
   max-width: 620px;
 }
 
@@ -205,15 +271,12 @@ main > section + section::before {
 }
 
 .call-to-action {
-  display: inline-block;
   text-decoration: none;
-  color: #181818;
-  background-color: var(--laranja);
   padding: 14px;
-  border-radius: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  transition: transform 0.9s; /* aula 05 */
+  transition:
+    transform 0.9s,
+    background-color 0.3s,
+    box-shadow 0.3s; /* aula 05 */
 }
 
 .call-to-action:hover {
@@ -233,17 +296,50 @@ main > section + section::before {
 }
 
 .about div {
-  max-width: 50%;
+  max-width: 56%;
   padding: 32px;
 }
 
 .about div h2 {
   font-size: 32px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .about p {
-  line-height: 1.6;
+  line-height: 1.65;
+  color: var(--cinza);
+  margin-bottom: 14px;
+}
+
+.about .destaque {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--texto);
+  border-left: 3px solid var(--laranja);
+  padding-left: 14px;
+  margin-bottom: 20px;
+}
+
+.about a {
+  color: var(--laranja);
+  font-weight: 500;
+}
+
+.base {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.base li {
+  font-size: 13px;
+  color: var(--laranja);
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  padding: 4px 12px;
 }
 
 .about img {
@@ -307,33 +403,12 @@ main > section + section::before {
   line-height: 1.5;
 }
 
-/* ícones desenhados só com CSS, um para cada parte do logo */
+/* ícones em traço laranja, finos como a fonte do logo */
 .icone {
   display: block;
   width: 48px;
   height: 48px;
-}
-
-.icone-cerebro {
-  background: linear-gradient(135deg, #8a8a8a, #4a4a4a);
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-}
-
-.icone-neuronios {
-  background:
-    radial-gradient(circle, var(--laranja) 4px, transparent 5px) 0 0 / 24px 24px,
-    linear-gradient(
-      45deg,
-      transparent 47%,
-      var(--laranja) 48%,
-      var(--laranja) 52%,
-      transparent 53%
-    );
-}
-
-.icone-codigo {
-  background-color: var(--laranja);
-  clip-path: polygon(0 0, 100% 55%, 30% 100%);
+  color: var(--laranja);
 }
 
 /* fim fluxo */
@@ -390,15 +465,12 @@ main > section + section::before {
 }
 
 .action {
-  background-color: var(--laranja);
-  border: 0;
   padding: 12px 28px;
-  border-radius: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #181818;
   margin-top: 18px;
   cursor: pointer;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
 }
 
 /* fim projects */
@@ -408,11 +480,18 @@ footer {
   width: 100%;
   background-color: rgb(18 18 18 / 94%);
   border-top: 1px solid var(--linha);
-  padding: 60px 0;
+  padding: 22px 10%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start; /* à esquerda */
+  align-items: center; /* centralizado na altura do rodapé */
+  gap: 12px;
   color: var(--cinza);
+  font-size: 13px;
+}
+
+footer h3 {
+  font-size: 15px;
+  font-weight: 500;
 }
 
 footer a {
@@ -420,15 +499,22 @@ footer a {
   color: #fff;
 }
 
-footer p {
-  margin-left: 12px;
-}
-
 /* fim rodape */
 
 /* responsividade (módulo 5) */
 @media (width <= 1050px) {
   /* inicio main */
+  .main {
+    align-items: flex-start;
+    padding-top: 56px;
+  }
+
+  .hero-nome {
+    left: 50%;
+    top: 74%;
+    font-size: clamp(34px, 11vw, 72px);
+  }
+
   .main h1 {
     font-size: 45px;
   }
@@ -446,7 +532,7 @@ footer p {
   }
 
   .about div {
-    max-width: 80%;
+    max-width: 90%;
   }
 
   .about div h2 {
@@ -484,17 +570,9 @@ footer p {
   /* inicio rodape */
   footer {
     flex-direction: column;
-    text-align: center;
-    padding: 60px 16px;
-  }
-
-  footer p {
-    margin: 0;
-  }
-
-  footer h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 20px 6%;
   }
 
   /* fim rodape */

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="CódigoIAgil: desenvolvimento ágil com Inteligência Artificial. Do pensamento ao código."
+      content="CódigoIAgil: desenvolvimento ágil com Inteligência Artificial, sobre uma base sólida de infraestrutura, middleware e segurança."
     />
     <meta name="theme-color" content="#1e1e1e" />
     <link
@@ -18,10 +18,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="js/nuvem.js" defer></script>
     <title>CódigoIAgil - Meu portfólio</title>
   </head>
   <body>
@@ -40,7 +41,11 @@
     <main>
       <!-- inicio main -->
       <section class="main" id="home">
-        <div>
+        <!-- nuvem de IA: pontos quânticos se movendo; o nome aparece ao passar o mouse -->
+        <p class="hero-nome" aria-hidden="true">Código<span>IÁ</span>gil</p>
+        <canvas class="hero-nuvem" aria-hidden="true"></canvas>
+
+        <div class="hero-conteudo">
           <p class="eyebrow">
             <span class="pulso" aria-hidden="true"></span>
             CódigoIAgil · desenvolvimento ágil com IA
@@ -59,15 +64,43 @@
       <section class="about" id="sobre">
         <div class="painel">
           <h2 class="titulo">Sobre</h2>
-          <p>
-            Sou desenvolvedor front-end em formação e uso a Inteligência
-            Artificial como parceira de trabalho: ela conecta ideias,
-            referências e padrões para que o código saia mais rápido, sem abrir
-            mão da qualidade.
-            <br /><br />
-            Neste portfólio você encontra os projetos que construí durante os
-            meus estudos, com HTML, CSS e, em breve, JavaScript.
+          <p class="destaque">
+            Antes de escrever código com IA, passei anos do outro lado: fazendo
+            o código dos outros rodar em produção, com segurança.
           </p>
+          <p>
+            Venho da infraestrutura. Administro sistemas e middleware,
+            servidores de aplicação como o JBoss, proxies Nginx, contêineres
+            Docker e clusters Kubernetes. É o lado que recebe a aplicação
+            "pronta" e descobre, na hora mais difícil, o que ninguém testou.
+          </p>
+          <p>
+            Por isso segurança e compliance nunca foram etapa final para mim:
+            são requisito desde a primeira linha. E o que é repetitivo eu
+            automatizo com Ansible, Shell Script e PowerShell, porque processo
+            manual é onde o erro se esconde.
+          </p>
+          <p>
+            Hoje uso a IA para acelerar, não para pular etapas. Criei o
+            <a
+              href="https://github.com/CodigoIAgil/atesto"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ATESTO</a
+            >, um método em que a IA executa, mas nada chega à produção sem
+            evidência: lint, varredura de segredos e validação independente em
+            CI. Este site foi publicado exatamente assim.
+          </p>
+          <ul class="base" aria-label="Base técnica">
+            <li>Segurança</li>
+            <li>Compliance</li>
+            <li>Middleware</li>
+            <li>Kubernetes</li>
+            <li>Docker</li>
+            <li>JBoss</li>
+            <li>Nginx</li>
+            <li>Automação</li>
+          </ul>
         </div>
         <img
           src="images/foto-pc.svg"
@@ -86,7 +119,19 @@
         </p>
         <ol class="fluxo-lista">
           <li class="painel">
-            <span class="icone icone-cerebro" aria-hidden="true"></span>
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            >
+              <path d="M24 4 42 14v20L24 44 6 34V14Z" />
+              <path d="m6 14 18 10 18-10M24 24v20" />
+              <circle cx="24" cy="24" r="2.4" fill="currentColor" />
+            </svg>
             <h3>Pensar</h3>
             <p>
               O cérebro entende o problema e desenha a solução antes da primeira
@@ -94,7 +139,22 @@
             </p>
           </li>
           <li class="painel">
-            <span class="icone icone-neuronios" aria-hidden="true"></span>
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            >
+              <path d="M10 12 24 23 38 9M24 23 11 38M24 23l14 13" />
+              <circle cx="10" cy="12" r="2.6" fill="currentColor" />
+              <circle cx="38" cy="9" r="2.6" fill="currentColor" />
+              <circle cx="11" cy="38" r="2.6" fill="currentColor" />
+              <circle cx="38" cy="36" r="2.6" fill="currentColor" />
+              <circle cx="24" cy="23" r="4" fill="currentColor" />
+            </svg>
             <h3>Conectar</h3>
             <p>
               A IA liga os neurônios: ideias, referências e padrões se conectam
@@ -102,7 +162,18 @@
             </p>
           </li>
           <li class="painel">
-            <span class="icone icone-codigo" aria-hidden="true"></span>
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 14 6 24l10 10M32 14l10 10-10 10M27 9l-6 30" />
+            </svg>
             <h3>Codar</h3>
             <p>
               O código pensado chega pronto para revisar, testar e publicar com
