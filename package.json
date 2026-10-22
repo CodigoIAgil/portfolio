@@ -1,8 +1,8 @@
 {
-  "name": "web-projeto-template",
-  "version": "0.1.0",
+  "name": "portfolio",
+  "version": "1.0.0",
   "private": true,
-  "description": "Modelo de projeto web (HTML/CSS/JS) com lint, varredura de segredos e CI.",
+  "description": "Portfólio de página única (HTML e CSS) — módulos 4 e 5 do curso Sujeito Programador.",
   "license": "MIT",
   "scripts": {
     "lint:html": "html-validate \"**/*.html\"",

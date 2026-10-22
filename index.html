@@ -3,18 +3,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu projeto</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sujeito Programador - Meu portfólio</title>
   </head>
   <body>
-    <header>
-      <h1>Meu projeto</h1>
+    <!-- inicio header -->
+    <header class="nav">
+      <nav aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+        </ul>
+      </nav>
     </header>
+    <!-- fim header -->
+
     <main>
-      <p>Página inicial gerada a partir do web-projeto-template.</p>
+      <!-- inicio main -->
+      <section class="main" id="home">
+        <div>
+          <h1>Olá,<br />Seja bem-vindo</h1>
+          <p>Crie soluções para o seu negócio!</p>
+          <a href="#projetos" class="call-to-action">Veja meus projetos 👇</a>
+        </div>
+      </section>
+      <!-- fim main -->
+
+      <!-- inicio sobre -->
+      <section class="about" id="sobre">
+        <div>
+          <h2>Sobre</h2>
+          <p>
+            Sou desenvolvedor front-end em formação e transformo ideias em
+            páginas rápidas, acessíveis e fáceis de usar. Gosto de entender o
+            problema do cliente antes de escrever a primeira linha de código.
+            <br /><br />
+            Neste portfólio você encontra os projetos que construí durante os
+            meus estudos, com HTML, CSS e, em breve, JavaScript.
+          </p>
+        </div>
+        <img
+          src="images/foto-pc.svg"
+          alt="Ilustração de um notebook com código na tela"
+          width="900"
+          height="600"
+        />
+      </section>
+      <!-- fim sobre -->
+
+      <!-- inicio projetos -->
+      <section class="projects" id="projetos">
+        <h2>Meus projetos</h2>
+        <p>Conheça meus últimos projetos</p>
+
+        <div class="project-list">
+          <img
+            src="images/projeto1.svg"
+            alt="Tela do projeto 1"
+            width="800"
+            height="500"
+          />
+          <img
+            src="images/projeto2.svg"
+            alt="Tela do projeto 2"
+            width="800"
+            height="500"
+          />
+          <img
+            src="images/projeto3.svg"
+            alt="Tela do projeto 3"
+            width="800"
+            height="500"
+          />
+        </div>
+        <div class="project-list">
+          <img
+            src="images/projeto2.svg"
+            alt="Tela do projeto 2"
+            width="800"
+            height="500"
+          />
+          <img
+            src="images/projeto1.svg"
+            alt="Tela do projeto 1"
+            width="800"
+            height="500"
+          />
+          <img
+            src="images/projeto3.svg"
+            alt="Tela do projeto 3"
+            width="800"
+            height="500"
+          />
+        </div>
+
+        <button type="button" class="action">Faça um orçamento</button>
+      </section>
+      <!-- fim projetos -->
     </main>
+
+    <!-- inicio rodape -->
     <footer>
-      <p>Feito com HTML e CSS.</p>
+      <h3><a href="#home">Sujeito Programador</a></h3>
+      <p>Todos direitos reservados</p>
     </footer>
+    <!-- fim rodape -->
   </body>
 </html>
