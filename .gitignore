@@ -1,0 +1,23 @@
+# Dependências
+node_modules/
+
+# Segredos: nunca versionar. Use .env.example com valores falsos.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs e builds
+*.log
+dist/
+build/
+.cache/
+
+# Sistema / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

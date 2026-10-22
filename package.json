@@ -1,0 +1,21 @@
+{
+  "name": "web-projeto-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Modelo de projeto web (HTML/CSS/JS) com lint, varredura de segredos e CI.",
+  "license": "MIT",
+  "scripts": {
+    "lint:html": "html-validate \"**/*.html\"",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint": "npm run lint:html && npm run lint:css",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check"
+  },
+  "devDependencies": {
+    "html-validate": "11.17.0",
+    "prettier": "3.9.10",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard": "40.0.0"
+  }
+}
