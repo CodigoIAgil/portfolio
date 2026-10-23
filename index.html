@@ -3,14 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CódigoIAgil: desenvolvimento ágil com Inteligência Artificial, sobre uma base sólida de infraestrutura, middleware e segurança."
+    />
+    <meta name="theme-color" content="#1e1e1e" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32.png"
+    />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <title>Sujeito Programador - Meu portfólio</title>
+    <script src="js/nuvem.js" defer></script>
+    <title>CódigoIAgil - Meu portfólio</title>
   </head>
   <body>
     <!-- inicio header -->
@@ -28,9 +41,20 @@
     <main>
       <!-- inicio main -->
       <section class="main" id="home">
-        <div>
+        <!-- nuvem de IA: pontos quânticos se movendo; o nome aparece ao passar o mouse -->
+        <p class="hero-nome" aria-hidden="true">Código<span>IÁ</span>gil</p>
+        <canvas class="hero-nuvem" aria-hidden="true"></canvas>
+
+        <div class="hero-conteudo">
+          <p class="eyebrow">
+            <span class="pulso" aria-hidden="true"></span>
+            CódigoIAgil · desenvolvimento ágil com IA
+          </p>
           <h1>Olá,<br />Seja bem-vindo</h1>
-          <p>Crie soluções para o seu negócio!</p>
+          <p class="subtitulo">
+            Crie soluções para o seu negócio: código pensado, conectado e
+            entregue por Inteligência Artificial.
+          </p>
           <a href="#projetos" class="call-to-action">Veja meus projetos 👇</a>
         </div>
       </section>
@@ -38,16 +62,45 @@
 
       <!-- inicio sobre -->
       <section class="about" id="sobre">
-        <div>
-          <h2>Sobre</h2>
-          <p>
-            Sou desenvolvedor front-end em formação e transformo ideias em
-            páginas rápidas, acessíveis e fáceis de usar. Gosto de entender o
-            problema do cliente antes de escrever a primeira linha de código.
-            <br /><br />
-            Neste portfólio você encontra os projetos que construí durante os
-            meus estudos, com HTML, CSS e, em breve, JavaScript.
+        <div class="painel">
+          <h2 class="titulo">Sobre</h2>
+          <p class="destaque">
+            Antes de escrever código com IA, passei anos do outro lado: fazendo
+            o código dos outros rodar em produção, com segurança.
           </p>
+          <p>
+            Venho da infraestrutura. Administro sistemas e middleware,
+            servidores de aplicação como o JBoss, proxies Nginx, contêineres
+            Docker e clusters Kubernetes. É o lado que recebe a aplicação
+            "pronta" e descobre, na hora mais difícil, o que ninguém testou.
+          </p>
+          <p>
+            Por isso segurança e compliance nunca foram etapa final para mim:
+            são requisito desde a primeira linha. E o que é repetitivo eu
+            automatizo com Ansible, Shell Script e PowerShell, porque processo
+            manual é onde o erro se esconde.
+          </p>
+          <p>
+            Hoje uso a IA para acelerar, não para pular etapas. Criei o
+            <a
+              href="https://github.com/CodigoIAgil/atesto"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ATESTO</a
+            >, um método em que a IA executa, mas nada chega à produção sem
+            evidência: lint, varredura de segredos e validação independente em
+            CI. Este site foi publicado exatamente assim.
+          </p>
+          <ul class="base" aria-label="Base técnica">
+            <li>Segurança</li>
+            <li>Compliance</li>
+            <li>Middleware</li>
+            <li>Kubernetes</li>
+            <li>Docker</li>
+            <li>JBoss</li>
+            <li>Nginx</li>
+            <li>Automação</li>
+          </ul>
         </div>
         <img
           src="images/foto-pc.svg"
@@ -58,9 +111,82 @@
       </section>
       <!-- fim sobre -->
 
+      <!-- inicio fluxo -->
+      <section class="fluxo" id="como-trabalho">
+        <h2 class="titulo">Do pensamento ao código</h2>
+        <p class="fluxo-intro">
+          A ideia por trás da marca CódigoIAgil, em três passos.
+        </p>
+        <ol class="fluxo-lista">
+          <li class="painel">
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            >
+              <path d="M24 4 42 14v20L24 44 6 34V14Z" />
+              <path d="m6 14 18 10 18-10M24 24v20" />
+              <circle cx="24" cy="24" r="2.4" fill="currentColor" />
+            </svg>
+            <h3>Pensar</h3>
+            <p>
+              O cérebro entende o problema e desenha a solução antes da primeira
+              linha de código.
+            </p>
+          </li>
+          <li class="painel">
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            >
+              <path d="M10 12 24 23 38 9M24 23 11 38M24 23l14 13" />
+              <circle cx="10" cy="12" r="2.6" fill="currentColor" />
+              <circle cx="38" cy="9" r="2.6" fill="currentColor" />
+              <circle cx="11" cy="38" r="2.6" fill="currentColor" />
+              <circle cx="38" cy="36" r="2.6" fill="currentColor" />
+              <circle cx="24" cy="23" r="4" fill="currentColor" />
+            </svg>
+            <h3>Conectar</h3>
+            <p>
+              A IA liga os neurônios: ideias, referências e padrões se conectam
+              e aceleram cada decisão.
+            </p>
+          </li>
+          <li class="painel">
+            <svg
+              class="icone"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 14 6 24l10 10M32 14l10 10-10 10M27 9l-6 30" />
+            </svg>
+            <h3>Codar</h3>
+            <p>
+              O código pensado chega pronto para revisar, testar e publicar com
+              segurança.
+            </p>
+          </li>
+        </ol>
+      </section>
+      <!-- fim fluxo -->
+
       <!-- inicio projetos -->
       <section class="projects" id="projetos">
-        <h2>Meus projetos</h2>
+        <h2 class="titulo">Meus projetos</h2>
         <p>Conheça meus últimos projetos</p>
 
         <div class="project-list">
@@ -111,8 +237,8 @@
 
     <!-- inicio rodape -->
     <footer>
-      <h3><a href="#home">Sujeito Programador</a></h3>
-      <p>Todos direitos reservados</p>
+      <h3><a href="#home">CódigoIAgil</a></h3>
+      <p>Desenvolvimento ágil com IA · Todos direitos reservados</p>
     </footer>
     <!-- fim rodape -->
   </body>

@@ -1,3 +1,16 @@
+/* identidade CódigoIAgil: cores tiradas do logo */
+:root {
+  --fundo: #1e1e1e; /* fundo do logo */
+  --laranja: #f97316; /* losango e neurônios */
+  --cinza: #c4c4c4; /* letras do nome */
+  --texto: #ececec;
+  --verde: #5f7a2e; /* verde militar: botões de ação */
+  --verde-hover: #71903a;
+  --painel: rgb(30 30 30 / 85%);
+  --linha: rgb(249 115 22 / 30%);
+  --marca-dagua-opacidade: 0.15; /* 0 = some, 1 = logo exatamente como é */
+}
+
 /* reset */
 * {
   margin: 0;
@@ -9,15 +22,36 @@ html {
   scroll-behavior: smooth; /* rolagem suave na navegação interna (aula 09) */
 }
 
-/* quem pediu "reduzir movimento" no sistema não recebe a rolagem animada */
+/* quem pediu "reduzir movimento" no sistema não recebe animações */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
 body {
   font-family: Roboto, sans-serif;
+  color: var(--texto);
+  background-color: var(--fundo);
+}
+
+/* marca d'água: o logo fica parado no centro e o conteúdo rola por cima */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 80px 0 0;
+  z-index: -1;
+  background: url("images/logo-codigoiagil.webp") center / min(85vw, 1000px)
+    auto no-repeat;
+  opacity: var(--marca-dagua-opacidade);
+  pointer-events: none;
 }
 
 /* o menu sticky tem 80px: sem isso ele cobre o topo da seção ao navegar */
@@ -28,13 +62,77 @@ section {
 /* foco visível para quem navega pelo teclado */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #1e96fc;
+  outline: 3px solid var(--laranja);
   outline-offset: 3px;
+}
+
+/* títulos de seção: o losango laranja "entregando" o código */
+.titulo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.titulo::before {
+  content: "";
+  width: 0.7em;
+  height: 0.7em;
+  flex-shrink: 0;
+  background-color: var(--laranja);
+  clip-path: polygon(0 0, 100% 55%, 30% 100%);
+}
+
+/* painel translúcido: deixa o logo aparecer sem atrapalhar a leitura */
+.painel {
+  background-color: var(--painel);
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 8px;
+  backdrop-filter: blur(3px);
+}
+
+/* divisor entre seções: uma linha com um neurônio no meio */
+main > section + section {
+  position: relative;
+  border-top: 1px solid var(--linha);
+}
+
+main > section + section::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background-color: var(--laranja);
+  box-shadow: 0 0 12px var(--laranja);
+}
+
+/* botões de ação: verde militar, que contrasta com o laranja e chama o clique */
+.call-to-action,
+.action {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--verde);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 18px rgb(95 122 46 / 35%);
+}
+
+.call-to-action:hover,
+.action:hover {
+  background-color: var(--verde-hover);
+  box-shadow: 0 6px 26px rgb(113 144 58 / 55%);
 }
 
 /* inicio header */
 .nav {
-  background-color: #181818;
+  background-color: rgb(24 24 24 / 92%);
+  border-bottom: 1px solid var(--linha);
   height: 80px;
   width: 100%;
   display: flex;
@@ -42,6 +140,7 @@ button:focus-visible {
   position: sticky; /* aula 06 */
   top: 0;
   z-index: 9;
+  backdrop-filter: blur(6px);
 }
 
 .nav nav {
@@ -59,50 +158,125 @@ button:focus-visible {
   text-decoration: none;
   color: #ddd;
   padding: 20px;
+  transition: color 0.3s;
 }
 
 .nav-list a:hover {
-  color: #fff;
+  color: var(--laranja);
 }
 
 /* fim header */
 
 /* inicio main */
 .main {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: calc(100vh - 80px); /* tela inteira menos o menu */
-  background-color: #000;
-  background-image: url("images/programador.svg");
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center; /* centro vertical */
   padding-left: 10%;
+  padding-right: 10%;
+
+  /* no topo a nuvem é a protagonista: a marca d'água quase some aqui */
+  background-color: rgb(30 30 30 / 75%);
+}
+
+.hero-nuvem {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* o nome que aparece no fundo da nuvem ao passar o mouse */
+.hero-nome {
+  position: absolute;
+  z-index: 0;
+  left: 70%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  font-size: clamp(40px, 7vw, 112px);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--cinza);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  transition:
+    opacity 1.2s,
+    filter 1.2s,
+    transform 1.2s;
+}
+
+.hero-nome span {
+  color: var(--laranja);
+}
+
+.revela-nome .hero-nome {
+  opacity: 0.9;
+  filter: blur(0);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cinza);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+/* um neurônio disparando */
+.pulso {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--laranja);
+  animation: pulso 1.8s ease-out infinite;
+}
+
+@keyframes pulso {
+  0% {
+    box-shadow: 0 0 0 0 rgb(249 115 22 / 70%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 14px rgb(249 115 22 / 0%);
+  }
 }
 
 .main h1 {
   color: #fff;
   font-size: 54px;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 80%);
 }
 
-.main p {
+.main .subtitulo {
   font-size: 24px;
   font-style: italic;
-  color: #1e96fc;
+  color: var(--laranja);
   margin-top: 10px;
   margin-bottom: 35px;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 90%);
 }
 
 .call-to-action {
-  display: inline-block;
   text-decoration: none;
-  color: #181818;
-  background-color: #fff;
   padding: 14px;
-  border-radius: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  transition: transform 0.9s; /* aula 05 */
+  transition:
+    transform 0.9s,
+    background-color 0.3s,
+    box-shadow 0.3s; /* aula 05 */
 }
 
 .call-to-action:hover {
@@ -113,22 +287,59 @@ button:focus-visible {
 
 /* inicio about */
 .about {
-  background-color: #fff;
   width: 100%;
   padding: 80px 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
 }
 
 .about div {
-  max-width: 50%;
-  padding-right: 40px;
+  max-width: 56%;
+  padding: 32px;
 }
 
 .about div h2 {
   font-size: 32px;
+  margin-bottom: 18px;
+}
+
+.about p {
+  line-height: 1.65;
+  color: var(--cinza);
   margin-bottom: 14px;
+}
+
+.about .destaque {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--texto);
+  border-left: 3px solid var(--laranja);
+  padding-left: 14px;
+  margin-bottom: 20px;
+}
+
+.about a {
+  color: var(--laranja);
+  font-weight: 500;
+}
+
+.base {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.base li {
+  font-size: 13px;
+  color: var(--laranja);
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  padding: 4px 12px;
 }
 
 .about img {
@@ -138,6 +349,69 @@ button:focus-visible {
 }
 
 /* fim about */
+
+/* inicio fluxo */
+.fluxo {
+  width: 100%;
+  padding: 80px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fluxo h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 90%);
+}
+
+.fluxo-intro {
+  font-style: italic;
+  color: var(--cinza);
+  margin-bottom: 40px;
+}
+
+.fluxo-lista {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.fluxo-lista li {
+  flex: 1;
+  max-width: 320px;
+  padding: 28px;
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s;
+}
+
+.fluxo-lista li:hover {
+  border-color: var(--laranja);
+  box-shadow: 0 0 24px rgb(249 115 22 / 25%);
+}
+
+.fluxo-lista h3 {
+  font-size: 22px;
+  margin: 18px 0 8px;
+}
+
+.fluxo-lista p {
+  color: var(--cinza);
+  line-height: 1.5;
+}
+
+/* ícones em traço laranja, finos como a fonte do logo */
+.icone {
+  display: block;
+  width: 48px;
+  height: 48px;
+  color: var(--laranja);
+}
+
+/* fim fluxo */
 
 /* inicio projects */
 .projects {
@@ -153,10 +427,12 @@ button:focus-visible {
   font-size: 32px;
   margin-top: 20px;
   margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 90%);
 }
 
 .projects p {
   font-style: italic;
+  color: var(--cinza);
   margin-bottom: 40px;
 }
 
@@ -173,23 +449,28 @@ button:focus-visible {
   height: auto;
   margin-left: 0.5%;
   margin-right: 0.5%;
+  border-radius: 6px;
   opacity: 0.8;
-  transition: opacity 0.9s;
+  transition:
+    opacity 0.9s,
+    box-shadow 0.9s;
 }
 
+/* a sinapse acende quando o mouse passa */
 .projects img:hover {
   opacity: 1;
+  box-shadow:
+    0 0 0 2px var(--laranja),
+    0 0 28px rgb(249 115 22 / 45%);
 }
 
 .action {
-  background-color: #181818;
-  border: 0;
   padding: 12px 28px;
-  border-radius: 4px;
-  font-size: 18px;
-  color: #fff;
   margin-top: 18px;
   cursor: pointer;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
 }
 
 /* fim projects */
@@ -197,12 +478,20 @@ button:focus-visible {
 /* inicio rodape */
 footer {
   width: 100%;
-  background-color: #181818;
-  padding: 60px 0;
+  background-color: rgb(18 18 18 / 94%);
+  border-top: 1px solid var(--linha);
+  padding: 22px 10%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
+  justify-content: flex-start; /* à esquerda */
+  align-items: center; /* centralizado na altura do rodapé */
+  gap: 12px;
+  color: var(--cinza);
+  font-size: 13px;
+}
+
+footer h3 {
+  font-size: 15px;
+  font-weight: 500;
 }
 
 footer a {
@@ -210,20 +499,27 @@ footer a {
   color: #fff;
 }
 
-footer p {
-  margin-left: 12px;
-}
-
 /* fim rodape */
 
 /* responsividade (módulo 5) */
 @media (width <= 1050px) {
   /* inicio main */
+  .main {
+    align-items: flex-start;
+    padding-top: 56px;
+  }
+
+  .hero-nome {
+    left: 50%;
+    top: 74%;
+    font-size: clamp(34px, 11vw, 72px);
+  }
+
   .main h1 {
     font-size: 45px;
   }
 
-  .main p {
+  .main .subtitulo {
     font-size: 18px;
   }
 
@@ -236,8 +532,7 @@ footer p {
   }
 
   .about div {
-    max-width: 80%;
-    padding-right: 0;
+    max-width: 90%;
   }
 
   .about div h2 {
@@ -252,6 +547,19 @@ footer p {
 
   /* fim sobre */
 
+  /* inicio fluxo */
+  .fluxo-lista {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fluxo-lista li {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* fim fluxo */
+
   /* inicio projetos */
   .projects img {
     width: 27.5%;
@@ -262,15 +570,9 @@ footer p {
   /* inicio rodape */
   footer {
     flex-direction: column;
-  }
-
-  footer p {
-    margin: 0;
-  }
-
-  footer h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 20px 6%;
   }
 
   /* fim rodape */
