@@ -20,13 +20,22 @@
   let visivel = true;
   let quadro = null;
 
-  // A nuvem fica à direita no desktop e embaixo do texto no celular.
+  // A nuvem se centra atrás do nome revelado, cuja posição vem do CSS
+  // (.hero-nome): à direita do texto no desktop, embaixo dele no celular.
+  // O translate(-50%, -50%) do nome não altera offsetLeft/offsetTop, que
+  // apontam exatamente para o centro dele.
   function calcularNuvem() {
     const celular = largura <= 1050;
+    const nome = secao.querySelector(".hero-nome");
+    const x = nome ? nome.offsetLeft : largura * (celular ? 0.5 : 0.7);
+    const y = nome ? nome.offsetTop : altura * (celular ? 0.74 : 0.5);
     centro = {
-      x: largura * (celular ? 0.5 : 0.7),
-      y: altura * (celular ? 0.74 : 0.5),
-      rx: largura * (celular ? 0.42 : 0.24),
+      x,
+      y,
+      // No desktop o raio não passa da borda direita da tela.
+      rx: celular
+        ? largura * 0.42
+        : Math.max(120, Math.min(largura * 0.24, largura * 0.99 - x)),
       ry: altura * (celular ? 0.2 : 0.36),
     };
   }

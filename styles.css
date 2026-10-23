@@ -188,14 +188,22 @@ main > section + section::before {
   z-index: 1;
 }
 
-/* o nome que aparece no fundo da nuvem ao passar o mouse */
+/*
+ * O nome que aparece no fundo da nuvem ao passar o mouse.
+ * Fica centrado no espaço livre à direita do texto do hero, que vai de
+ * 10% + 620px (largura máxima do texto) + 32px de folga até 97% da tela:
+ *   centro = (10% + 652px + 97%) / 2 = 53.5% + 326px
+ *   largura disponível = 87% - 652px; o nome mede ~5.67 × a fonte, então
+ *   fonte máxima = (87vw - 652px) / 5.67 ≈ 15.34vw - 115px
+ * A nuvem (js/nuvem.js) lê esta posição e se centra atrás do nome.
+ */
 .hero-nome {
   position: absolute;
   z-index: 0;
-  left: 70%;
+  left: calc(53.5% + 326px);
   top: 50%;
   transform: translate(-50%, -50%) scale(0.96);
-  font-size: clamp(40px, 7vw, 112px);
+  font-size: clamp(36px, min(7vw, 15.34vw - 115px), 112px);
   font-weight: 300;
   letter-spacing: 0.06em;
   white-space: nowrap;
