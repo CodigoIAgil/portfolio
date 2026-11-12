@@ -13,9 +13,9 @@
     "check": "npm run lint && npm run format:check"
   },
   "devDependencies": {
-    "html-validate": "11.17.0",
+    "html-validate": "11.21.0",
     "prettier": "3.9.10",
-    "stylelint": "17.16.0",
-    "stylelint-config-standard": "40.0.0"
+    "stylelint": "18.0.0",
+    "stylelint-config-standard": "41.0.0"
   }
 }
